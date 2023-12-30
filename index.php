@@ -1,12 +1,55 @@
 <?php
-$host           = 'localhost';
-$username       = 'root';
-$password       = '';
-$dbname         = 'mahasiswa';
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$dbname = 'mahasiswa';
 
-$koneksi        = mysqli_connect($host, $username, $password, $dbname);
-if(!$koneksi){
-    die("Tidak bisa terkoneksi ke database");
-} else {
-    echo "Berhasil terkoneksi ke database";
-}   
+$koneksi = mysqli_connect($host, $username, $password, $dbname);
+if (!$koneksi) {
+  die("Tidak bisa terkoneksi ke database");
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="max-auto">
+    <!-- Input Data -->
+    <div class="card">
+      <div class="card-header">
+        Tambah/Edit Data
+      </div>
+      <div class="card-body">
+        <form action="" method="POST">
+
+        </form>
+      </div>
+    </div>
+
+    <!-- Get Data -->
+    <div class="card">
+      <div class="card-header">
+        Data Mahasiswa
+      </div>
+      <div class="card-body">
+        <form action="" method="POST">
+
+        </form>
+      </div>
+    </div>
+
+
+  </div>
+
+</body>
+
+</html>
