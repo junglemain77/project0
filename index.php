@@ -25,7 +25,7 @@ if (!$koneksi) {
     }
 
     .card {
-      margin-top: 15px
+      margin-top: 16px
     }
   </style>
 </head>
