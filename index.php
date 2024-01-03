@@ -8,6 +8,17 @@ $koneksi = mysqli_connect($host, $username, $password, $dbname);
 if (!$koneksi) {
   die("Tidak bisa terkoneksi ke database");
 }
+$nim      ="";
+$nama     ="";
+$alamat   ="";
+$fakultas ="";
+
+
+if(isset($_POST['submit'])){
+    $nim      = $_POST['nim'];
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,11 +32,11 @@ if (!$koneksi) {
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <style>
     .mx-auto {
-      width: 1000px
+      width: 800px
     }
 
     .card {
-      margin-top: 16px
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -42,14 +53,30 @@ if (!$koneksi) {
           <div class="mb-3 row">
             <label for="nim" class="col-sm-2 col-form-label">NIM</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control-plaintext" id="nim" name="nim" value="<?php echo $nim?>">
+              <input type="text" class="form-control" id="nim" name="nim" value="<?php echo $nim?>">
             </div>
             <div class="mb-3 row">
             <label for="nama" class="col-sm-2 col-form-label">Nama</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control-plaintext" id="nama" name="nama" value="<?php echo $nama?>">
+              <input type="text" class="form-control" id="nama" name="nama" value="<?php echo $nama?>">
+            </div>
+            <div class="mb-3 row">
+            <label for="nama" class="col-sm-2 col-form-label">Alamat </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="alamat" name="alamat" value="<?php echo $alamat?>">
+            </div>
+            <div class="mb-3 row">
+            <label for="nama" class="col-sm-2 col-form-label">Fakultas </label>
+            <div class="col-sm-10">
+              <select class="form-control" id="fakultas">
+                <option value="">Pilih Fakultas</option>
+                <option value="Saintek" <?php if($fakultas == "saintek") echo "selected"?> >Saintek</option>
+                <option value="Soshum" <?php if($fakultas == "soshum") echo "selected"?>>Soshum</option>
+              </select>
             </div>
           </div>
+          <div class="col-12">
+            <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary"/>
         </form>
       </div>
     </div>
@@ -60,15 +87,10 @@ if (!$koneksi) {
         Data Mahasiswa
       </div>
       <div class="card-body">
-        <form action="" method="POST">
-
-        </form>
+        
       </div>
     </div>
-
-
-  </div>
-
+  </div>  
 </body>
 
 </html>
