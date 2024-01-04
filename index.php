@@ -1,3 +1,4 @@
+<!-- PHP code -->
 <?php
 $host = 'localhost';
 $username = 'root';
@@ -21,6 +22,7 @@ if(isset($_POST['submit'])){
 
 ?>
 
+<!-- HTML code -->
 <!DOCTYPE html>
 <html lang="en">
 
