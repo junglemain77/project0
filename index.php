@@ -1,4 +1,3 @@
-<!-- PHP code -->
 <?php
 $host = 'localhost';
 $username = 'root';
@@ -13,16 +12,30 @@ $nim      ="";
 $nama     ="";
 $alamat   ="";
 $fakultas ="";
+$sukses   ="";
+$error    ="";
 
 
 if(isset($_POST['submit'])){
-    $nim      = $_POST['nim'];
+    $nim          = $_POST['nim'];
+    $nama         = $_POST['nama'];
+    $alamat       = $_POST['alamat'];
+    $fakultas     = $_POST['fakultas'];
 
+    if($nim && $nama && $alamat && $fakultas){
+      $sql1 = "insert into mahasiswa(nim, nama, alamat, fakultas) values ('$nim', '$nama', '$alamat', '$fakultas')"; 
+      $q1   = mysqli_query($koneksi, $sql1);
+      if($q1){
+        $sukses   = "Data telah berhasil diinput";
+      } else {
+        $error    = "Gagal menginput data";
+      }
+  } else {
+    $error    ="Silahkan masukkan semua data";
+  }
 }
-
 ?>
 
-<!-- HTML code -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,6 +64,26 @@ if(isset($_POST['submit'])){
         Tambah/Edit Data
       </div>
       <div class="card-body">
+        <?php
+        if($error){
+            ?>
+            <div class="alert alert-danger" role="alert">
+            <?php echo $error ?>
+            </div>
+        <?php    
+        }
+        ?>
+
+        <?php
+        if($sukses){
+            ?>
+            <div class="alert alert-success" role="alert">
+            <?php echo $sukses ?>
+            </div>
+        <?php    
+        }
+        ?>
+        
         <form action="" method="POST">
           <div class="mb-3 row">
             <label for="nim" class="col-sm-2 col-form-label">NIM</label>
@@ -70,7 +103,7 @@ if(isset($_POST['submit'])){
             <div class="mb-3 row">
             <label for="nama" class="col-sm-2 col-form-label">Fakultas </label>
             <div class="col-sm-10">
-              <select class="form-control" id="fakultas">
+              <select class="form-control" id="fakultas" name="fakultas">
                 <option value="">Pilih Fakultas</option>
                 <option value="Saintek" <?php if($fakultas == "saintek") echo "selected"?> >Saintek</option>
                 <option value="Soshum" <?php if($fakultas == "soshum") echo "selected"?>>Soshum</option>
@@ -78,7 +111,7 @@ if(isset($_POST['submit'])){
             </div>
           </div>
           <div class="col-12">
-            <input type="submit" name="simpan" value="Simpan Data" class="btn btn-primary"/>
+            <input type="submit" name="submit" value="Simpan Data" class="btn btn-primary"/>
         </form>
       </div>
     </div>
@@ -89,7 +122,41 @@ if(isset($_POST['submit'])){
         Data Mahasiswa
       </div>
       <div class="card-body">
-        
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">NIM</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Alamat</th>
+              <th scope="col">Fakultas</th>
+              <th scope="col">Aksi</th>
+            </tr>
+            <tbody>
+              <?php
+              $sql2 = "select * from mahasiswa order by id desc";
+              $q1   = mysql_connect($koneksi, $sql2);
+              $urut = 1;
+              while($r2 = mysqli_fetch_array($q2)){
+                $id         = $r2['id'];
+                $nim        = $r2['nim'];
+                $nama       = $r2['nama'];
+                $alamat     = $r2['alamat'];
+                $fakultas   = $r2['fakultas'];
+                
+                ?>
+                <tr>
+                    <th scope="row"><?php echo $urut++ ?></th>
+                    <td scope="row"><?php echo $nim ?></td>
+                    <td scope="row"><?php echo $nama ?></td>
+                    <td scope="row"><?php echo $alamat ?></td>
+                    <td scope="row"><?php echo $fakultas ?></td>
+                    <td scope="row">
+
+                    </td>
+                </tr>
+                <?php
+              }
+              ?>
       </div>
     </div>
   </div>  
